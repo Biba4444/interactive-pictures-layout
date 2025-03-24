@@ -8,7 +8,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState("idle");
 
-  const url = `https://pixabay.com/api/?key=49508543-beaf05a0f802f0bed2128a61c&q=${searchValue}&page=${pagintationPage}&per_page=24`;
+  const url = `https://pixabay.com/api/?key=49508543-beaf05a0f802f0bed2128a61c&q=${searchValue}&orientation=horizontal&page=${pagintationPage}&per_page=15`;
 
   const fetchImages = useCallback(async () => {
     setStatus("Pending");
@@ -46,7 +46,7 @@ function App() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      <PicturesLayout images={images} />
+      {status == "Resolved" && <PicturesLayout images={images} />}
     </>
   );
 }
