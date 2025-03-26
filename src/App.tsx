@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import SearchBar from "./SearchBar";
-import PicturesLayout from "./PicturesLayout";
-import Skeleton from "./Skeleton";
+import SearchBar from "./components/SearchBar";
+import PicturesLayout from "./components/PicturesLayout";
+import Skeleton from "./components/Skeleton";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
