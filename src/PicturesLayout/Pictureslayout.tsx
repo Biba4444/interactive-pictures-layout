@@ -13,7 +13,7 @@ type PicturesLayoutProps = {
 const PicturesLayout: React.FC<PicturesLayoutProps> = ({ images }) => {
   return (
     <div className={styles.grid}>
-      {images.map(image => (
+      {images.map((image: Picture) => (
         <div key={image.id} className={styles.card}>
           <img
             src={image.webformatURL}

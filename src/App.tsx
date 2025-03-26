@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import SearchBar from "./SearchBar";
 import PicturesLayout from "./PicturesLayout";
+import Skeleton from "./Skeleton";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
@@ -26,7 +27,6 @@ function App() {
       console.error(error);
       setStatus("Rejected");
     }
-    console.log("Images from fetchImages:", images);
   }, [url]);
 
   useEffect(() => {
@@ -35,18 +35,19 @@ function App() {
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
-    console.log("Search value from SearchBar:", value);
+    setPagintationPage(1);
   };
 
   const handlePagination = (page: number) => {
     setPagintationPage(page);
-    console.log("Page value from Pagination:", page);
   };
 
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      {status == "Resolved" && <PicturesLayout images={images} />}
+      <Skeleton onLoading={status === "Pending"} count={15}>
+        <PicturesLayout images={images} />
+      </Skeleton>
     </>
   );
 }
