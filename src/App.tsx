@@ -50,21 +50,20 @@ function App() {
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
-    setPagintationPage(1); // Сбрасываем на первую страницу
-    setImages([]); // Очищаем предыдущие изображения
+    setPagintationPage(1);
+    setImages([]);
   };
 
   const handleLoadMore = () => {
-    setPagintationPage(prevPage => prevPage + 1); // Увеличиваем номер страницы
+    setPagintationPage(prevPage => prevPage + 1);
   };
 
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      {status === "Pending" && pagintationPage === 1 && (
-        <Skeleton onLoading={true} count={15} />
-      )}
-      <PicturesLayout images={images} />
+      <Skeleton onLoading={status === "Pending"} count={15}>
+        <PicturesLayout images={images} />
+      </Skeleton>
       {status !== "Pending" && <Pagination onLoadMore={handleLoadMore} />}
     </>
   );
