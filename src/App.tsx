@@ -48,15 +48,6 @@ function App() {
     setIsFirstLoad(false);
   }, [fetchImages]);
 
-  useEffect(() => {
-    if (pagintationPage > 1) {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [images, pagintationPage]);
-
   const handleSearch = (value: string) => {
     setSearchValue(value);
     setPagintationPage(1);
@@ -70,7 +61,7 @@ function App() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      <Skeleton onLoading={status === "Pending"} count={16}>
+      <Skeleton onLoading={status === "Pending"} count={15 * pagintationPage}>
         <PicturesLayout images={images} />
       </Skeleton>
       {status !== "Pending" && <Pagination onLoadMore={handleLoadMore} />}
