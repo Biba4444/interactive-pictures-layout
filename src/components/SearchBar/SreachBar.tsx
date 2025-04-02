@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { FaSearch } from "react-icons/fa";
 
 type SearchBarProps = {
   onSearch: (value: string) => void;
@@ -13,24 +14,27 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     setSearchValue(value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.SyntheticEvent<EventTarget>) => {
+    event.preventDefault();
     onSearch(searchValue);
     setSearchValue("");
   };
 
   return (
     <div className={styles.header}>
-      <input
-        type="text"
-        name="Searchbar"
-        value={searchValue}
-        placeholder="Search..."
-        onChange={handleSearch}
-        className={styles.input}
-      />
-      <button onClick={handleSubmit} className={styles.button}>
-        Submit
-      </button>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label>
+          <input
+            type="text"
+            name="Searchbar"
+            value={searchValue}
+            placeholder="Search..."
+            onChange={handleSearch}
+            className={styles.input}
+          />
+          <FaSearch className={styles.search} />
+        </label>
+      </form>
     </div>
   );
 };

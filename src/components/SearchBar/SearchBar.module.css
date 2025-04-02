@@ -1,32 +1,33 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #f8f9fa;
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
 }
 
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
 .input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 8px 24px 8px 12px;
+  width: 300px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-right: 10px;
 }
 
-.button {
-  padding: 8px 16px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
+.search {
+  position: relative;
+  left: -35px;
+  top: 1.5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #0056b3;
 }
