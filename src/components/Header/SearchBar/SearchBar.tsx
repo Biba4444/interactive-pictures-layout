@@ -19,21 +19,19 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={styles.header}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <label>
-          <input
-            type="text"
-            name="Searchbar"
-            value={searchValue}
-            placeholder="Search..."
-            onChange={handleSearch}
-            className={styles.input}
-          />
-          <FaSearch className={styles.search} />
-        </label>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <label>
+        <input
+          type="text"
+          name="Searchbar"
+          value={searchValue}
+          placeholder="Search..."
+          onChange={handleSearch}
+          className={styles.input}
+        />
+        <FaSearch className={styles.search} />
+      </label>
+    </form>
   );
 };
 
