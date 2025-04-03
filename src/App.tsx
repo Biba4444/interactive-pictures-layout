@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import SearchBar from "./components/SearchBar";
+import { useState, useEffect, useCallback, createContext } from "react";
+import Header from "./components/Header";
 import PicturesLayout from "./components/PicturesLayout";
 import Skeleton from "./components/Skeleton";
 import Pagination from "./components/Pagination";
@@ -10,6 +10,8 @@ type Image = {
   tags: string;
 };
 
+export const SearchContext = createContext<(value: string) => void>(() => {});
+
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [pagintationPage, setPagintationPage] = useState(1);
@@ -17,7 +19,6 @@ function App() {
   const [status, setStatus] = useState<
     "idle" | "Pending" | "Resolved" | "Rejected"
   >("idle");
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const url = `https://pixabay.com/api/?key=49508543-beaf05a0f802f0bed2128a61c&q=${searchValue}&orientation=horizontal&page=${pagintationPage}&per_page=15`;
 
@@ -27,11 +28,9 @@ function App() {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        if (isFirstLoad) {
-          setImages(data.hits);
-        } else {
-          setImages(prevImages => [...prevImages, ...data.hits]);
-        }
+        setImages(prevImages =>
+          pagintationPage === 1 ? data.hits : [...prevImages, ...data.hits]
+        );
         setStatus("Resolved");
       } else {
         setStatus("Rejected");
@@ -41,11 +40,10 @@ function App() {
       console.error("Error fetching images:", error);
       setStatus("Rejected");
     }
-  }, [url]);
+  }, [url, pagintationPage]);
 
   useEffect(() => {
     fetchImages();
-    setIsFirstLoad(false);
   }, [fetchImages]);
 
   const handleSearch = (value: string) => {
@@ -60,7 +58,9 @@ function App() {
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
+      <SearchContext.Provider value={handleSearch}>
+        <Header />
+      </SearchContext.Provider>
       <Skeleton onLoading={status === "Pending"} count={15 * pagintationPage}>
         <PicturesLayout images={images} />
       </Skeleton>

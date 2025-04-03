@@ -1,12 +1,10 @@
-import { useState } from "react";
-import styles from "./SearchBar.module.css";
+import { useState, useContext } from "react";
 import { FaSearch } from "react-icons/fa";
+import { SearchContext } from "../../../App";
+import styles from "./SearchBar.module.css";
 
-type SearchBarProps = {
-  onSearch: (value: string) => void;
-};
-
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar = () => {
+  const onSearch = useContext(SearchContext);
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
