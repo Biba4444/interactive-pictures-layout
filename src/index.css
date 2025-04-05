@@ -1,1 +1,24 @@
 @import-normalize;
+
+[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-bg-alt: #2a2a2a;
+  --color-text: #f0f0f0;
+  --color-text-alt: #d0d0d0;
+  --color-primary: #45aaee;
+  --color-secondary: #ffcc00;
+}
+
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f0f0f0;
+  --color-text: #1a1a1a;
+  --color-text-alt: #333333;
+  --color-primary: #011122;
+  --color-secondary: #ff9800;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
