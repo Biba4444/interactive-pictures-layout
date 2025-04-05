@@ -7,18 +7,67 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Build output
+dist/
+build/
+out/
+dist-ssr/
+
+# Static files
 *.local
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+*.lcov
+
+# Next.js
+.next/
+.vercel/
+out/
+
+# React Native
+.expo/
+.expo-shared/
+
+# Miscellaneous
+*.lock
+*.bak
+*.tmp
+*.log
+*.cache
+
+# Yarn Berry
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Ignore generated files by npm
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
