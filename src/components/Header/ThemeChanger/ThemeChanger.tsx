@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./ThemeChanger.module.css";
 
 export const ThemeChanger = () => {
   const [isFirstRender, setIsFirstRender] = useState(true);
@@ -20,9 +21,22 @@ export const ThemeChanger = () => {
   }, [theme, isFirstRender]);
 
   return (
-    <div className="theme-changer">
-      <button onClick={() => handleThemeChange("light")}>Light</button>
-      <button onClick={() => handleThemeChange("dark")}>Dark</button>
+    <div className={styles.container}>
+      {theme === "dark" ? (
+        <button
+          className={styles.button}
+          onClick={() => handleThemeChange("light")}
+        >
+          Light
+        </button>
+      ) : (
+        <button
+          className={styles.button}
+          onClick={() => handleThemeChange("dark")}
+        >
+          Dark
+        </button>
+      )}
     </div>
   );
 };

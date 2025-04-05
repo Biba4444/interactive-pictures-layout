@@ -3,22 +3,29 @@
 [data-theme="dark"] {
   --color-bg: #1a1a1a;
   --color-bg-alt: #2a2a2a;
-  --color-text: #f0f0f0;
-  --color-text-alt: #d0d0d0;
-  --color-primary: #45aaee;
-  --color-secondary: #ffcc00;
+  --color-primary: #6d90a8;
+  --color-primary-hover: #4a6b8c;
+  --color-text: #f1f1f1;
+  --color-border: #333333;
+  --button-bg: #6d90a8;
 }
 
 [data-theme="light"] {
-  --color-bg: #ffffff;
+  --color-bg: #ece3e3;
   --color-bg-alt: #f0f0f0;
-  --color-text: #1a1a1a;
-  --color-text-alt: #333333;
   --color-primary: #011122;
-  --color-secondary: #ff9800;
+  --color-primary-hover: #0b2a49;
+  --color-text: #f1f1f1;
+  --color-border: #333333;
+  --button-bg: #6d90a8;
+}
+
+html {
+  scrollbar-width: thin;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
