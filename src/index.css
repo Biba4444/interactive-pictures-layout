@@ -8,6 +8,7 @@
   --color-text: #f1f1f1;
   --color-border: #333333;
   --button-bg: #6d90a8;
+  --icon-color: #011122;
 }
 
 [data-theme="light"] {
@@ -18,6 +19,7 @@
   --color-text: #f1f1f1;
   --color-border: #333333;
   --button-bg: #6d90a8;
+  --icon-color: #011122;
 }
 
 html {

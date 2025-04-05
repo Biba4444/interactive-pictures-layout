@@ -21,7 +21,7 @@ export const ThemeChanger = () => {
   }, [theme, isFirstRender]);
 
   return (
-    <div className={styles.container}>
+    <div>
       {theme === "dark" ? (
         <button
           className={styles.button}

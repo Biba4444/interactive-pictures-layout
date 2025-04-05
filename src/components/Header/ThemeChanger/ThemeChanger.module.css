@@ -10,10 +10,3 @@
     background-color: var(--color-primary-hover);
   }
 }
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
