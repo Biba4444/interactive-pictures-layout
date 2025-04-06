@@ -61,7 +61,7 @@ function App() {
       <SearchContext.Provider value={handleSearch}>
         <Header />
       </SearchContext.Provider>
-      <Skeleton onLoading={status === "Pending"} count={15 * pagintationPage}>
+      <Skeleton onLoading={status === "Pending"} count={images.length + 16}>
         <PicturesLayout images={images} />
       </Skeleton>
       {status !== "Pending" && <Pagination onLoadMore={handleLoadMore} />}

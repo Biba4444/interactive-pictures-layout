@@ -6,6 +6,9 @@
   font-size: 16px;
   color: var(--color-text);
   padding: 8px 24px;
+  position: absolute;
+  right: 40px;
+  top: 20px;
   &:hover {
     background-color: var(--color-primary-hover);
   }
