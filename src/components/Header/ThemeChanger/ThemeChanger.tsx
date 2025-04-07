@@ -1,44 +1,42 @@
-import { useEffect, useState } from "react";
-import styles from "./ThemeChanger.module.css";
+import { useEffect, useState } from 'react'
+import styles from './ThemeChanger.module.css'
+
+const THEMES = {
+	LIGHT: 'light',
+	DARK: 'dark',
+}
 
 export const ThemeChanger = () => {
-  const [isFirstRender, setIsFirstRender] = useState(true);
-  const [theme, setTheme] = useState("light");
+	const savedTheme = localStorage.getItem('theme') || THEMES.LIGHT
+	const [theme, setTheme] = useState(savedTheme)
 
-  const handleThemeChange = (newTheme: string) => {
-    setTheme(newTheme);
-  };
+	const handleThemeChange = (newTheme: string) => {
+		setTheme(newTheme)
+	}
 
-  useEffect(() => {
-    if (isFirstRender) {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      handleThemeChange(savedTheme);
-      setIsFirstRender(false);
-      return;
-    }
-    localStorage.setItem("theme", theme);
-    document.body.setAttribute("data-theme", theme);
-  }, [theme, isFirstRender]);
+	useEffect(() => {
+		document.body.setAttribute('data-theme', theme)
+	}, [theme])
 
-  return (
-    <div>
-      {theme === "dark" ? (
-        <button
-          className={styles.button}
-          onClick={() => handleThemeChange("light")}
-        >
-          Light
-        </button>
-      ) : (
-        <button
-          className={styles.button}
-          onClick={() => handleThemeChange("dark")}
-        >
-          Dark
-        </button>
-      )}
-    </div>
-  );
-};
+	return (
+		<div>
+			{theme === THEMES.DARK ? (
+				<button
+					className={styles.button}
+					onClick={() => handleThemeChange(THEMES.LIGHT)}
+				>
+					Light
+				</button>
+			) : (
+				<button
+					className={styles.button}
+					onClick={() => handleThemeChange(THEMES.DARK)}
+				>
+					Dark
+				</button>
+			)}
+		</div>
+	)
+}
 
-export default ThemeChanger;
+export default ThemeChanger
