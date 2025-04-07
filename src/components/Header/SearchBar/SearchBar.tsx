@@ -7,12 +7,7 @@ const SearchBar = () => {
 	const { onSearch } = useSearchContext()
 	const [searchValue, setSearchValue] = useState('')
 
-	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value
-		setSearchValue(value)
-	}
-
-	const handleSubmit = (event: React.SyntheticEvent<EventTarget>) => {
+	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
 		onSearch(searchValue)
 		setSearchValue('')
@@ -29,7 +24,7 @@ const SearchBar = () => {
 					name='Searchbar'
 					value={searchValue}
 					placeholder='Search...'
-					onChange={handleSearch}
+					onChange={e => setSearchValue(e.target.value)}
 					className={styles.input}
 				/>
 				<FaSearch className={styles.search} />
