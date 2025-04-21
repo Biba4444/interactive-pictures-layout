@@ -11,9 +11,12 @@ type PicturesLayoutProps = {
 };
 
 const PicturesLayout: React.FC<PicturesLayoutProps> = ({ images }) => {
+  const uniqueImages = images.filter(
+    (image, index, self) => self.findIndex(img => img.id === image.id) === index
+  );
   return (
     <div className={styles.grid}>
-      {images.map((image: Picture) => (
+      {uniqueImages.map((image: Picture) => (
         <div key={image.id} className={styles.card}>
           <img
             src={image.webformatURL}
