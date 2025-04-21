@@ -1,11 +1,13 @@
 import Header from "./components/Header";
 import PicturesLayout from "./components/PicturesLayout";
 import Skeleton from "./components/Skeleton";
+import styles from "./App.module.css";
 import { SearchContext } from "./contexts/useSearchContext";
 import { useImages } from "./hooks/useImages";
 
 function App() {
   const { images, status, handleSearch } = useImages();
+  console.log("Current status:", status);
 
   return (
     <>
@@ -15,6 +17,9 @@ function App() {
       <Skeleton onLoading={status === "pending"} count={images.length + 21}>
         <PicturesLayout images={images} />
       </Skeleton>
+      {status == "rejected" && (
+        <div className={styles.message}>No images found.</div>
+      )}
     </>
   );
 }

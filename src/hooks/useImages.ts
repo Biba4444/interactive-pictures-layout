@@ -16,7 +16,7 @@ export const useImages = () => {
   const [searchValue, setSearchValue] = useState("");
   const [images, setImages] = useState<Image[]>([]);
   const [status, setStatus] = useState<Status>("idle");
-  const { paginationPage, setPaginationPage } = useInfinityScroll();
+  const { paginationPage, setPaginationPage, setHasMore } = useInfinityScroll();
 
   const fetchImages = useCallback(
     async (fetchUrl: string) => {
@@ -25,9 +25,15 @@ export const useImages = () => {
         const response = await fetch(fetchUrl);
         if (response.ok) {
           const data = await response.json();
-          setImages(prevImages =>
-            paginationPage === 1 ? data.hits : [...prevImages, ...data.hits]
-          );
+          if (data.hits.length === 0) {
+            setHasMore(false);
+          } else {
+            setImages(prevImages =>
+              paginationPage === 1 ? data.hits : [...prevImages, ...data.hits]
+            );
+            setHasMore(true);
+          }
+
           setStatus("resolved");
         } else {
           setStatus("rejected");
@@ -36,9 +42,10 @@ export const useImages = () => {
       } catch (error) {
         console.error("Error fetching images:", error);
         setStatus("rejected");
+        setHasMore(false);
       }
     },
-    [paginationPage]
+    [paginationPage, setHasMore]
   );
 
   useEffect(() => {
@@ -50,6 +57,7 @@ export const useImages = () => {
     setSearchValue(value);
     setPaginationPage(1);
     setImages([]);
+    setHasMore(true);
   };
 
   return {
