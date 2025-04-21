@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useInfinityScroll = () => {
-  const [actualPaginationPage, setActualPaginationPage] = useState(1);
+  const [paginationPage, setPaginationPage] = useState(1);
 
   const debounce = (func: (args: any) => void, delay: number) => {
     let timeoutId: ReturnType<typeof setTimeout>;
@@ -22,7 +22,7 @@ export const useInfinityScroll = () => {
       Math.ceil(window.innerHeight + window.scrollY) >=
       document.documentElement.scrollHeight - 200;
     if (bottom) {
-      setActualPaginationPage(prevPage => prevPage + 1);
+      setPaginationPage(prevPage => prevPage + 1);
     }
   }, 800);
 
@@ -34,7 +34,7 @@ export const useInfinityScroll = () => {
   }, [handleScroll]);
 
   return {
-    actualPaginationPage,
-    setActualPaginationPage,
+    paginationPage,
+    setPaginationPage,
   };
 };
