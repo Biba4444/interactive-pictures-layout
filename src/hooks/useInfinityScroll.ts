@@ -4,10 +4,13 @@ export const useInfinityScroll = () => {
   const [paginationPage, setPaginationPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const debounce = (func: (args: any) => void, delay: number) => {
+  const debounce = <T extends (...args: any[]) => void>(
+    func: T,
+    delay: number
+  ) => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    return function (...args: any) {
+    return function (...args: Parameters<T>) {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
