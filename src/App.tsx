@@ -15,9 +15,7 @@ function App() {
       <SearchContext value={{ onSearch: handleSearch }}>
         <Header />
       </SearchContext>
-      {/* <Skeleton onLoading={status === "pending"} count={images.length + 21}> */}
       <PicturesLayout images={images} />
-      {/* </Skeleton> */}
       {status === "pending" && <Loader />}
       {status == "rejected" && (
         <div className={styles.message}>No images found.</div>

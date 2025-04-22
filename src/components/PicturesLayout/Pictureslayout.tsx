@@ -18,11 +18,7 @@ const PicturesLayout: React.FC<PicturesLayoutProps> = ({ images }) => {
     <div className={styles.grid}>
       {uniqueImages.map((image: Picture) => (
         <div key={image.id} className={styles.card}>
-          <img
-            src={image.webformatURL}
-            alt={image.tags}
-            className={styles.image}
-          />
+          <img src={image.webformatURL} className={styles.image} />
         </div>
       ))}
     </div>
